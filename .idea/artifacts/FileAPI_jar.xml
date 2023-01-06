@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="FileAPI:jar">
+    <output-path>$USER_HOME$/OneDrive/Desktop</output-path>
+    <root id="archive" name="FileAPI.jar">
+      <element id="module-output" name="FileAPI" />
+    </root>
+  </artifact>
+</component>
