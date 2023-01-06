@@ -7,7 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="FileAPI" />
+        <module name="Java-Framework" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Java-Framework" target="19" />
+    </bytecodeTargetLevel>
   </component>
 </project>
