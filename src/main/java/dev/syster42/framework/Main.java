@@ -1,4 +1,6 @@
-package dev.syster42.fileapi;
+package dev.syster42.framework;
+
+import dev.syster42.framework.utils.FileAPI;
 
 import java.util.Scanner;
 
@@ -8,7 +10,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         FileAPI fileAPI = new FileAPI("test.txt");
         fileAPI.createFile();
-da
+
         System.out.println(fileAPI.canExecute());
         fileAPI.writeInNextFreeLine("55");
         System.out.println();
