@@ -1,4 +1,4 @@
-package dev.syster42.fileapi;
+package dev.syster42.framework.utils;
 
 import java.io.File;
 import java.io.FileWriter;
