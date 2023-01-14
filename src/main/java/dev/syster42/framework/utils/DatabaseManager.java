@@ -66,14 +66,14 @@ public class DatabaseManager {
         return port;
     }
 
-    public Short getPortAsShort() {
+    public int getPortAsInt() {
         String port = null;
         for (String str : fileAPI.readAll()) {
             if (str.contains("port")) {
                 port = str.split(": ")[1];
             }
         }
-        return Short.parseShort(port);
+        return Integer.parseInt(port);
     }
 
     public String getDatabaseUsername() {
@@ -106,7 +106,7 @@ public class DatabaseManager {
                 Main.getLogger().logInfo("Connected to Database " + this.getDatabase() + "!");
             } catch (Exception e) {
                 e.printStackTrace();
-                System.err.println(e.getClass().getName() + ": " + e.getMessage());
+                Main.getLogger().logError(e.getClass().getName() + ": " + e.getMessage());
                 System.exit(3);
             }
         } else if (getDatabaseSoftware().contains("mariadb")) {
@@ -118,7 +118,7 @@ public class DatabaseManager {
                 Main.getLogger().logInfo("Connected to Database " + this.getDatabase() + "!");
             } catch (Exception e) {
                 e.printStackTrace();
-                System.err.println(e.getClass().getName() + ": " + e.getMessage());
+                Main.getLogger().logError(e.getClass().getName() + ": " + e.getMessage());
                 System.exit(3);
             }
         } else if (getDatabaseSoftware().contains("mongodb")) {
@@ -130,7 +130,7 @@ public class DatabaseManager {
                 Main.getLogger().logInfo("Connected to Database " + this.getDatabase() + "!");
             } catch (Exception e) {
                 e.printStackTrace();
-                System.err.println(e.getClass().getName() + ": " + e.getMessage());
+                Main.getLogger().logError(e.getClass().getName() + ": " + e.getMessage());
                 System.exit(3);
             }
         } else if (getDatabaseSoftware().contains("SQLite")) {
@@ -142,7 +142,7 @@ public class DatabaseManager {
                 Main.getLogger().logInfo("Connected to Database " + this.getDatabase() + "!");
             } catch (Exception e) {
                 e.printStackTrace();
-                System.err.println(e.getClass().getName() + ": " + e.getMessage());
+                Main.getLogger().logError(e.getClass().getName() + ": " + e.getMessage());
                 System.exit(3);
             }
         }
