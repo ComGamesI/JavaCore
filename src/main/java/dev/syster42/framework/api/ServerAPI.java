@@ -13,7 +13,7 @@ public class ServerAPI {
 
     private String motd;
     private boolean allowedConnection;
-    private boolean live;
+    private boolean secret;
 
     public boolean isAllowedConnection() {
         return this.allowedConnection;
@@ -169,16 +169,16 @@ public class ServerAPI {
         return usedSpaceInDouble;
     }
 
-    public boolean isLive() {
-        return live;
+    public boolean isSecret() {
+        return secret;
     }
 
-    public void setLive(boolean live) {
-        this.live = live;
+    public void setSecret(boolean secret) {
+        this.secret = secret;
     }
 
-    public String checkStreamModus(){
-        if(isLive() == true)
+    public String showSecretInformation(){
+        if(this.isSecret() == true)
             return "online";
         else
             return "offline";
