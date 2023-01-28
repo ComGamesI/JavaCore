@@ -14,7 +14,7 @@ public class LogHandler {
 
     public void startLogging(){
         if(logfile.exists()){
-            logfile.renameFile(getConsoleHandler().getTime() + ".log");
+            logfile.renameFile(getConsoleHandler().getTimeForFiles() + ".log");
             logfile.createFile();
         }else
             logfile.createFile();
