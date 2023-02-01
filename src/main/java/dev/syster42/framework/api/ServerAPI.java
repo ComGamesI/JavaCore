@@ -146,7 +146,7 @@ public class ServerAPI {
 
     public long getUptime() {
         RuntimeMXBean rb = ManagementFactory.getRuntimeMXBean();
-        return rb.getUptime();
+        return rb.getUptime()/1000;
     }
 
     public double getTotalSaveStorage() {
