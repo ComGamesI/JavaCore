@@ -7,6 +7,8 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ServerAPI {
 
@@ -181,6 +183,24 @@ public class ServerAPI {
             return "online";
         else
             return "offline";
+    }
+
+    public String getTimeForConsole() {
+        SimpleDateFormat sdf = new SimpleDateFormat("[HH:mm:ss] ");
+        String date = sdf.format(new Date());
+        return date;
+    }
+
+    public String getTimeForFiles() {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH_mm_ss");
+        String date = sdf.format(new Date());
+        return date;
+    }
+
+    public String getTimeForStats(){
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        String date = sdf.format(new Date());
+        return date;
     }
 
 }

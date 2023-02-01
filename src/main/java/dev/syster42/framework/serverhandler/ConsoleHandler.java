@@ -1,5 +1,7 @@
 package dev.syster42.framework.serverhandler;
 
+import dev.syster42.framework.Main;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -10,7 +12,7 @@ public class ConsoleHandler {
     private String info;
 
     public String getError(){
-        return getTimeForConsole() + this.error;
+        return Main.getServerAPI().getTimeForConsole() + this.error;
     }
 
     public void setError(String error) {
@@ -18,7 +20,7 @@ public class ConsoleHandler {
     }
 
     public String getWarning() {
-        return getTimeForConsole() + this.warning;
+        return Main.getServerAPI().getTimeForConsole() + this.warning;
     }
 
     public void setWarning(String warning) {
@@ -26,22 +28,11 @@ public class ConsoleHandler {
     }
 
     public String getInfo() {
-        return getTimeForConsole() + this.info;
+        return Main.getServerAPI().getTimeForConsole() + this.info;
     }
 
     public void setInfo(String info) {
         this.info = info;
     }
 
-    public String getTimeForConsole() {
-        SimpleDateFormat sdf = new SimpleDateFormat("[HH:mm:ss] ");
-        String date = sdf.format(new Date());
-        return date;
-    }
-
-    public String getTimeForFiles() {
-        SimpleDateFormat sdf = new SimpleDateFormat("HH_mm_ss");
-        String date = sdf.format(new Date());
-        return date;
-    }
 }
