@@ -203,4 +203,12 @@ public class ServerAPI {
         return date;
     }
 
+    public static double generateRandom(double min, double max){
+        if(max>min)
+            return Math.floor((Math.random()*max)+min);
+        else if(min> max)
+            return Math.floor((Math.random()*min)+max);
+        else
+            return 0;
+    }
 }
