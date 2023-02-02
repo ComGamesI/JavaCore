@@ -1,7 +1,6 @@
 package dev.syster42.framework.utils;
 
-import dev.syster42.framework.Main;
-import dev.syster42.framework.serverhandler.ConsoleHandler;
+import dev.syster42.framework.Framework;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -103,10 +102,10 @@ public class DatabaseManager {
             try {
                 final String url = "jdbc:postgresql://" + this.getHost() + ":" + this.getPort() + "/" + this.getDatabase();
                 c = DriverManager.getConnection (url, this.getDatabaseUsername(), this.getDatabasePassword());
-                Main.getLogger().logInfo("Connected to Database " + this.getDatabase() + "!");
+                Framework.getLogger().logInfo("Connected to Database " + this.getDatabase() + "!");
             } catch (Exception e) {
                 e.printStackTrace();
-                Main.getLogger().logError(e.getClass().getName() + ": " + e.getMessage());
+                Framework.getLogger().logError(e.getClass().getName() + ": " + e.getMessage());
                 System.exit(3);
             }
         } else if (getDatabaseSoftware().contains("mariadb")) {
@@ -115,10 +114,10 @@ public class DatabaseManager {
             try {
                 Class.forName(driver);
                 c=DriverManager.getConnection(url, this.getDatabaseUsername(), this.getDatabasePassword());
-                Main.getLogger().logInfo("Connected to Database " + this.getDatabase() + "!");
+                Framework.getLogger().logInfo("Connected to Database " + this.getDatabase() + "!");
             } catch (Exception e) {
                 e.printStackTrace();
-                Main.getLogger().logError(e.getClass().getName() + ": " + e.getMessage());
+                Framework.getLogger().logError(e.getClass().getName() + ": " + e.getMessage());
                 System.exit(3);
             }
         } else if (getDatabaseSoftware().contains("mongodb")) {
@@ -127,10 +126,10 @@ public class DatabaseManager {
             try {
                 Class.forName(driver);
                 c=DriverManager.getConnection(url, this.getDatabaseUsername(), this.getDatabasePassword());
-                Main.getLogger().logInfo("Connected to Database " + this.getDatabase() + "!");
+                Framework.getLogger().logInfo("Connected to Database " + this.getDatabase() + "!");
             } catch (Exception e) {
                 e.printStackTrace();
-                Main.getLogger().logError(e.getClass().getName() + ": " + e.getMessage());
+                Framework.getLogger().logError(e.getClass().getName() + ": " + e.getMessage());
                 System.exit(3);
             }
         } else if (getDatabaseSoftware().contains("SQLite")) {
@@ -139,10 +138,10 @@ public class DatabaseManager {
             try {
                 Class.forName(driver);
                 c=DriverManager.getConnection(url, this.getDatabaseUsername(), this.getDatabasePassword());
-                Main.getLogger().logInfo("Connected to Database " + this.getDatabase() + "!");
+                Framework.getLogger().logInfo("Connected to Database " + this.getDatabase() + "!");
             } catch (Exception e) {
                 e.printStackTrace();
-                Main.getLogger().logError(e.getClass().getName() + ": " + e.getMessage());
+                Framework.getLogger().logError(e.getClass().getName() + ": " + e.getMessage());
                 System.exit(3);
             }
         }

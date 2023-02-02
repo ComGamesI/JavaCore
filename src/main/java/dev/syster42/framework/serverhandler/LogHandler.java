@@ -1,6 +1,6 @@
 package dev.syster42.framework.serverhandler;
 
-import dev.syster42.framework.Main;
+import dev.syster42.framework.Framework;
 import dev.syster42.framework.utils.FileAPI;
 
 public class LogHandler {
@@ -15,7 +15,7 @@ public class LogHandler {
 
     public void startLogging(){
         if(logfile.exists()){
-            logfile.renameFile(Main.getServerAPI().getTimeForConsole() + ".log");
+            logfile.renameFile(Framework.getServerAPI().getTimeForConsole() + ".log");
             logfile.createFile();
         }else
             logfile.createFile();
