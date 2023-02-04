@@ -7,6 +7,8 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ServerAPI {
 
@@ -144,7 +146,7 @@ public class ServerAPI {
 
     public long getUptime() {
         RuntimeMXBean rb = ManagementFactory.getRuntimeMXBean();
-        return rb.getUptime();
+        return rb.getUptime()/1000;
     }
 
     public double getTotalSaveStorage() {
@@ -183,4 +185,30 @@ public class ServerAPI {
             return "offline";
     }
 
+    public String getTimeForConsole() {
+        SimpleDateFormat sdf = new SimpleDateFormat("[HH:mm:ss] ");
+        String date = sdf.format(new Date());
+        return date;
+    }
+
+    public String getTimeForFiles() {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH_mm_ss");
+        String date = sdf.format(new Date());
+        return date;
+    }
+
+    public String getTimeForStats(){
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        String date = sdf.format(new Date());
+        return date;
+    }
+
+    public static double generateRandom(double min, double max){
+        if(max>min)
+            return Math.floor((Math.random()*max)+min);
+        else if(min> max)
+            return Math.floor((Math.random()*min)+max);
+        else
+            return 0;
+    }
 }
