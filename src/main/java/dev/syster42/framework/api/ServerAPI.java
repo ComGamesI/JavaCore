@@ -63,9 +63,7 @@ public class ServerAPI {
             NetworkInterface ni = NetworkInterface.getByInetAddress(InetAddress.getLocalHost());
             if (ni != null)
                 return ni.getDisplayName();
-        } catch (SocketException e) {
-            e.printStackTrace();
-        } catch (UnknownHostException e) {
+        } catch (SocketException | UnknownHostException e) {
             e.printStackTrace();
         }
         return null;
@@ -83,18 +81,16 @@ public class ServerAPI {
             if (hwa == null) {
                 return;
             } else {
-                String mac = "";
-                for (int i = 0; i < hwa.length; i++) {
-                    mac += String.format("%x:", hwa[i]);
+                StringBuilder mac = new StringBuilder();
+                for (byte b : hwa) {
+                    mac.append(String.format("%x:", b));
                 }
                 if (mac.length() > 0 && !ni.isLoopback()) {
-                    System.out.println(mac.toLowerCase().substring(0, mac.length() - 1));
+                    System.out.println(mac.toString().toLowerCase().substring(0, mac.length() - 1));
                 }
 
             }
-        } catch (SocketException e) {
-            e.printStackTrace();
-        } catch (UnknownHostException e) {
+        } catch (SocketException | UnknownHostException e) {
             e.printStackTrace();
         }
     }
@@ -152,22 +148,19 @@ public class ServerAPI {
     public double getTotalSaveStorage() {
         File file = new File("/");
         long totalSpace = file.getTotalSpace();
-        double totalSpaceInDouble = (totalSpace/ 8/1024/1024/1024);
-        return totalSpaceInDouble;
+        return (double) (totalSpace/ 8/1024/1024/1024);
     }
 
     public double getFreeSaveStorage() {
         File file = new File("/");
         long freeSpace = file.getFreeSpace();
-        double freeSpaceInDouble = (freeSpace/ 8/1024/1024/1024);
-        return freeSpaceInDouble;
+        return (double) (freeSpace/ 8/1024/1024/1024);
     }
 
     public double getUsedSaveStorage() {
         File file = new File("/");
         long usedSpace = file.getUsableSpace();
-        double usedSpaceInDouble = (usedSpace/8/1024/1024/1024);
-        return usedSpaceInDouble;
+        return (double) (usedSpace/8/1024/1024/1024);
     }
 
     public boolean isSecret() {
@@ -179,7 +172,7 @@ public class ServerAPI {
     }
 
     public String showSecretInformation(){
-        if(this.isSecret() == true)
+        if(this.isSecret())
             return "online";
         else
             return "offline";
@@ -187,20 +180,17 @@ public class ServerAPI {
 
     public String getTimeForConsole() {
         SimpleDateFormat sdf = new SimpleDateFormat("[HH:mm:ss] ");
-        String date = sdf.format(new Date());
-        return date;
+        return sdf.format(new Date());
     }
 
     public String getTimeForFiles() {
         SimpleDateFormat sdf = new SimpleDateFormat("HH_mm_ss");
-        String date = sdf.format(new Date());
-        return date;
+        return sdf.format(new Date());
     }
 
     public String getTimeForStats(){
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-        String date = sdf.format(new Date());
-        return date;
+        return sdf.format(new Date());
     }
 
     public static double generateRandom(double min, double max){

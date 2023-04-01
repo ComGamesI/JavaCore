@@ -41,8 +41,7 @@ public class DatabaseManager {
 
     public String getDatabase() {
         String database = fileAPI.readLine(2);
-        String db = database.split(": ")[1];
-        return db;
+        return database.split(": ")[1];
     }
 
     public String getHost() {
@@ -72,6 +71,7 @@ public class DatabaseManager {
                 port = str.split(": ")[1];
             }
         }
+        assert port != null;
         return Integer.parseInt(port);
     }
 
