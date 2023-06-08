@@ -1,5 +1,7 @@
 package dev.syster42.framework.api;
 
+import dev.syster42.framework.utils.FileAPI;
+
 import java.io.File;
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
@@ -12,7 +14,6 @@ import java.util.Date;
 
 public class ServerAPI {
 
-    private String motd;
     private boolean allowedConnection;
     private boolean secret;
 
@@ -78,9 +79,7 @@ public class ServerAPI {
             } else {
                 return;
             }
-            if (hwa == null) {
-                return;
-            } else {
+            if (hwa != null)  {
                 StringBuilder mac = new StringBuilder();
                 for (byte b : hwa) {
                     mac.append(String.format("%x:", b));
@@ -191,6 +190,37 @@ public class ServerAPI {
     public String getTimeForStats(){
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         return sdf.format(new Date());
+    }
+
+    public void generateRestartScript(String nameOfFinalJar){
+        if (this.getOS().contains("win")) {
+            FileAPI startbat = new FileAPI("start.bat");
+            startbat.writeInNextFreeLine("@echo off");
+            startbat.writeInNextFreeLine("java -Xmx1G -Xms1G -jar " + nameOfFinalJar + " nogui");
+            startbat.writeInNextFreeLine("PAUSE");
+        } else if (this.getOS().contains("nix") || this.getOS().contains("aix") || this.getOS().contains("nux")) {
+            FileAPI startsh = new FileAPI("start.sh");
+            startsh.writeInNextFreeLine("#!/bin/bash");
+            startsh.writeInNextFreeLine("");
+            startsh.writeInNextFreeLine("BINDIR=$(dirname \"$(readlink -fn \"$0\")\")");
+            startsh.writeInNextFreeLine("cd \"$BINDIR\"");
+            startsh.writeInNextFreeLine("");
+            startsh.writeInNextFreeLine("screen -S \"LoadBalancer\" bash -c \"sh ./loop.sh\"");
+
+            FileAPI loopsh = new FileAPI("loop.sh");
+            loopsh.writeInNextFreeLine("while true");
+            loopsh.writeInNextFreeLine("do");
+            loopsh.writeInNextFreeLine("\tjava -Xms1G -Xmx1G -jar LoadBalancer.jar");
+            loopsh.writeInNextFreeLine("\techo 'If you don't like to restart this server, you can make STRG + C");
+            loopsh.writeInNextFreeLine("\techo \"Rebooting in:\"");
+            loopsh.writeInNextFreeLine("\tfor i in 5 4 3 2 1");
+            loopsh.writeInNextFreeLine("\tdo");
+            loopsh.writeInNextFreeLine("\t\techo \"$i...\"");
+            loopsh.writeInNextFreeLine("\t\tsleep 1");
+            loopsh.writeInNextFreeLine("\tdone");
+            loopsh.writeInNextFreeLine("\techo \"Serverrestart\"");
+            loopsh.writeInNextFreeLine("done");
+        }
     }
 
     public static double generateRandom(double min, double max){
