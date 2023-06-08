@@ -2,22 +2,11 @@ package dev.syster42.framework.api;
 
 public class LizenzAPI {
 
-
     String licencekey;
-    int length = 23;
-    String[] key = new String[length];
 
     public LizenzAPI(){}
 
-    public LizenzAPI(String lizenz){
-        this.licencekey = lizenz;
-    }
-
-    public LizenzAPI(LizenzAPI lizenz){
-        this.key = lizenz.key;
-    }
-
-    public String createKey(int lengthKey, int sign, String smallLetters, String bigLetters, String specialssigns){
+    public void createKey(int lengthKey, int sign, String smallLetters, String bigLetters, String specialssigns){
         String[] key = new String[lengthKey];
         String whole = smallLetters.toLowerCase() + bigLetters.toUpperCase() + specialssigns;
         this.setLicencekey("");
@@ -38,9 +27,6 @@ public class LizenzAPI {
             this.licencekey = this.licencekey + key[i];
             System.out.print(key[i]);
         }
-
-        System.out.println("\nErstellter Key: " + this.getLicenceKey());
-        return licencekey;
     }
 
     public void setLicencekey(String licencekey) {
