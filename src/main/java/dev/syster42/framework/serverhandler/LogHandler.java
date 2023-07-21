@@ -16,13 +16,25 @@ public class LogHandler {
     private final boolean allowLogging;
 
 
+    public LogHandler(){
+        this.allowLogging = true;
+        if(allowLogging == true){
+            logDirectory = new FileAPI("logs\\");
+        }
+    }
+
+    public LogHandler(boolean allowLogging){
+        this.allowLogging = allowLogging;
+        if(allowLogging == true){
+            logDirectory = new FileAPI("logs\\");
+        }
+    }
     public LogHandler(boolean allowLogging, String pathLoggingFiles){
         this.allowLogging = allowLogging;
         if(allowLogging == true){
             logDirectory = new FileAPI(pathLoggingFiles);
         }
     }
-
 
     public void startLogging(){
         if(isAllowLogging()){
