@@ -6,12 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="FileAPI" />
-        <module name="Java-Framework" />
+        <module name="JavaCore" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Java-Framework" target="19" />
+      <module name="JavaCore" target="19" />
     </bytecodeTargetLevel>
   </component>
 </project>
